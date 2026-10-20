@@ -1,0 +1,277 @@
+# branch sharp-resample, head 303b77cbe35468edb5906e9f6f9501eef3073197
+# cargo test --release -p lightcraft-gpu -- --nocapture --test-threads=1
+   Compiling num-traits v0.2.19
+   Compiling zune-jpeg v0.5.15
+   Compiling lightcraft-raster v0.9.1 (<work>/lightcraft\crates\raster)
+   Compiling lightcraft-develop v0.9.1 (<work>/lightcraft\crates\develop)
+   Compiling lightcraft-scenes v0.9.1 (<work>/lightcraft\crates\scenes)
+   Compiling lightcraft-raw v0.9.1 (<work>/lightcraft\crates\raw)
+   Compiling half v2.7.1
+   Compiling ordered-float v5.5.0
+   Compiling num-integer v0.1.47
+   Compiling num-complex v0.4.6
+   Compiling ndarray v0.17.2
+   Compiling naga v30.0.1
+   Compiling lightcraft-pipeline v0.9.1 (<work>/lightcraft\crates\pipeline)
+   Compiling lightcraft-faces v0.9.1 (<work>/lightcraft\crates\faces)
+   Compiling wgpu-naga-bridge v30.0.1
+   Compiling wgpu-hal v30.0.1
+   Compiling wgpu-core-deps-windows-linux-android v30.0.1
+   Compiling wgpu-core v30.0.1
+   Compiling wgpu v30.0.1
+   Compiling lightcraft-gpu v0.9.1 (<work>/lightcraft\crates\gpu)
+    Finished `release` profile [optimized + debuginfo] target(s) in 48.76s
+     Running unittests src\lib.rs (target\release\deps\lightcraft_gpu-5469c0c2745cae48.exe)
+
+running 26 tests
+test backend::tests::a_panic_inside_the_scope_still_removes_the_marker ... 
+thread 'backend::tests::a_panic_inside_the_scope_still_removes_the_marker' (51224) panicked at crates\gpu\src\backend.rs:528:111:
+compile
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+ok
+test backend::tests::dx12_compiles_with_fxc_unless_asked ... ok
+test backend::tests::indirect_call_validation_is_off_unless_asked_for ... ok
+test backend::tests::init_marker_is_written_during_creation_and_removed_after ... ok
+test backend::tests::lightcraft_variable_wins_over_wgpu_backend ... ok
+test backend::tests::overlapping_scopes_share_one_marker_until_the_last_ends ... ok
+test backend::tests::parses_backend_names ... ok
+test backend::tests::resolves_against_the_build ... ok
+test backend::tests::window_renderer_fallback_order ... ok
+test backend::tests::window_renderer_names_round_trip ... ok
+test backend::tests::windows_defaults_to_dx12_only ... ok
+test backend::tests::with_init_marker_writes_the_process_wide_marker ... ok
+test ctx::tests::dispatches_stay_within_the_workgroup_limit ... ok
+test ctx::tests::limits_override_parses ... ok
+test exit::tests::closed_gate_lets_nothing_in_and_waits_for_what_is_inside ... ok
+test exit::tests::work_that_panics_still_leaves ... 
+thread 'exit::tests::work_that_panics_still_leaves' (50612) panicked at crates\gpu\src\exit.rs:127:13:
+a render panics (expected in this test)
+ok
+test faces::tests::every_operator_on_the_gpu_gives_what_the_cpu_gives ... ok
+test faces::tests::real_face_models_on_the_gpu_agree_with_the_cpu ... LC_FACE_MODELS is not set: skipping
+ok
+test faces::tests::the_gpu_convolution_gives_what_the_definition_gives ... ok
+test faces::tests::timings ... ignored, a benchmark: needs LC_FACE_MODELS and a GPU
+test render::tests::bench_kernels ... ignored
+test render::tests::coverage_mask_matches_per_pixel_decision ... ok
+test render::tests::coverage_mask_with_the_horizon_in_view ... ok
+test render::tests::gaussian_matches_cpu ... ok
+test render::tests::orient_map_matches_image_oriented ... ok
+test tests::the_gpu_handles_8_bit_unproofed_renders_without_the_hdr_range ... ok
+
+test result: ok. 24 passed; 0 failed; 2 ignored; 0 measured; 0 filtered out; finished in 3.53s
+
+     Running tests\equivalence.rs (target\release\deps\equivalence-20f005a1b2d07b34.exe)
+
+running 17 tests
+test a_window_does_not_keep_the_whole_source_on_the_device ... ok
+test banded_full_size_render_matches ... banded 3000×2000             3000x2000  mean 0.0003  max 1  >1: 0.0000%
+ok
+test cached_renders_match_uncached ... ok
+test camera_tone_and_relative_wb ... camera tone neutral          320x240  mean 0.0001  max 1  >1: 0.0000%
+camera tone edited           320x240  mean 0.0000  max 1  >1: 0.0000%
+camera chroma curve          320x240  mean 0.0001  max 1  >1: 0.0000%
+camera chroma curve edited   320x240  mean 0.0000  max 1  >1: 0.0000%
+ok
+test clipped_highlights_stay_neutral_on_both ... clipped highlights -100      320x240  mean 0.0000  max 1  >1: 0.0000%
+clipped highlights #523      320x240  mean 0.0000  max 1  >1: 0.0000%
+ok
+test embedded_lens_perspective_edges_match ... embedded lens + perspective  700x467  mean 0.0001  max 1  >1: 0.0000%
+embedded lens rotated        467x700  mean 0.0001  max 1  >1: 0.0000%
+ok
+test geometry_variants ... Normal crop=false            900x600  mean 0.0001  max 1  >1: 0.0000%
+Normal crop=true             500x333  mean 0.0001  max 1  >1: 0.0000%
+Rotate90 crop=false          600x900  mean 0.0001  max 1  >1: 0.0000%
+Rotate90 crop=true           333x500  mean 0.0001  max 1  >1: 0.0000%
+Rotate180 crop=false         900x600  mean 0.0001  max 1  >1: 0.0000%
+Rotate180 crop=true          500x333  mean 0.0000  max 1  >1: 0.0000%
+Rotate270 crop=false         600x900  mean 0.0001  max 1  >1: 0.0000%
+Rotate270 crop=true          333x500  mean 0.0001  max 1  >1: 0.0000%
+FlipH crop=false             900x600  mean 0.0001  max 1  >1: 0.0000%
+FlipH crop=true              500x333  mean 0.0001  max 1  >1: 0.0000%
+Transverse crop=false        600x900  mean 0.0001  max 1  >1: 0.0000%
+Transverse crop=true         333x500  mean 0.0001  max 1  >1: 0.0000%
+FlipV crop=false             900x600  mean 0.0001  max 1  >1: 0.0000%
+FlipV crop=true              500x333  mean 0.0001  max 1  >1: 0.0000%
+Transpose crop=false         600x900  mean 0.0001  max 1  >1: 0.0000%
+Transpose crop=true          333x500  mean 0.0001  max 1  >1: 0.0000%
+ok
+test gpu_matches_cpu ... default                      720x480  mean 0.0001  max 1  >1: 0.0000%
+typical                      720x480  mean 0.0001  max 1  >1: 0.0000%
+exposure/contrast/whites     720x480  mean 0.0001  max 1  >1: 0.0000%
+vibrance/saturation          720x480  mean 0.0001  max 1  >1: 0.0000%
+colour mixer                 720x480  mean 0.0001  max 1  >1: 0.0000%
+point color                  720x480  mean 0.0001  max 1  >1: 0.0000%
+b&w mix                      720x480  mean 0.0001  max 1  >1: 0.0000%
+colour grading               720x480  mean 0.0001  max 1  >1: 0.0000%
+tone curves                  720x480  mean 0.0000  max 1  >1: 0.0000%
+tone curves + refine saturation 720x480  mean 0.0001  max 1  >1: 0.0000%
+vignette (highlight)         720x480  mean 0.0000  max 1  >1: 0.0000%
+vignette (paint, +)          720x480  mean 0.0000  max 1  >1: 0.0000%
+vignette (paint, -)          720x480  mean 0.0000  max 1  >1: 0.0000%
+grain                        720x480  mean 0.0002  max 1  >1: 0.0000%
+dehaze -                     720x480  mean 0.0001  max 1  >1: 0.0000%
+dehaze +                     720x480  mean 0.0000  max 1  >1: 0.0000%
+clarity/texture -            720x480  mean 0.0001  max 1  >1: 0.0000%
+sharpen masking              720x480  mean 0.0001  max 1  >1: 0.0000%
+white balance                720x480  mean 0.0001  max 1  >1: 0.0000%
+noise reduction              720x480  mean 0.0001  max 1  >1: 0.0000%
+crop + straighten + flip     720x544  mean 0.0001  max 1  >1: 0.0000%
+orientation                  480x720  mean 0.0000  max 1  >1: 0.0000%
+lens + perspective           720x480  mean 0.0001  max 1  >1: 0.0000%
+masks (gradients)            720x480  mean 0.0001  max 1  >1: 0.0000%
+masks (brush + ranges)       720x480  mean 0.0001  max 1  >1: 0.0000%
+masks (cpu shapes, ops, amount) 720x480  mean 0.0001  max 1  >1: 0.0000%
+masks (local noise, moiré, defringe) 720x480  mean 0.0000  max 1  >1: 0.0000%
+masks (auto mask brush)      720x480  mean 0.0001  max 1  >1: 0.0000%
+calibration                  720x480  mean 0.0001  max 1  >1: 0.0000%
+spots + defringe (cpu stage) 720x480  mean 0.0001  max 1  >1: 0.0000%
+worst: mean 0.0002 LSB, max 1 LSB
+ok
+test highlights_shadows_base_matches_on_every_process ... V1 highlights/shadows 720    720x480  mean 0.0000  max 1  >1: 0.0000%
+V1 typical 720               720x480  mean 0.0001  max 1  >1: 0.0000%
+V1 local highlights 720      720x480  mean 0.0001  max 1  >1: 0.0000%
+V2 highlights/shadows 720    720x480  mean 0.0000  max 1  >1: 0.0000%
+V2 typical 720               720x480  mean 0.0001  max 1  >1: 0.0000%
+V2 local highlights 720      720x480  mean 0.0001  max 1  >1: 0.0000%
+V3 highlights/shadows 720    720x480  mean 0.0000  max 1  >1: 0.0000%
+V3 typical 720               720x480  mean 0.0001  max 1  >1: 0.0000%
+V3 local highlights 720      720x480  mean 0.0001  max 1  >1: 0.0000%
+V1 highlights/shadows 2400   2400x1600  mean 0.0000  max 1  >1: 0.0000%
+V1 typical 2400              2400x1600  mean 0.0003  max 1  >1: 0.0000%
+V1 local highlights 2400     2400x1600  mean 0.0002  max 1  >1: 0.0000%
+V2 highlights/shadows 2400   2400x1600  mean 0.0000  max 1  >1: 0.0000%
+V2 typical 2400              2400x1600  mean 0.0003  max 1  >1: 0.0000%
+V2 local highlights 2400     2400x1600  mean 0.0002  max 1  >1: 0.0000%
+V3 highlights/shadows 2400   2400x1600  mean 0.0000  max 1  >1: 0.0000%
+V3 typical 2400              2400x1600  mean 0.0003  max 1  >1: 0.0000%
+V3 local highlights 2400     2400x1600  mean 0.0002  max 1  >1: 0.0000%
+ok
+test output_spaces_match ... Srgb typical                 640x427  mean 0.0001  max 1  >1: 0.0000%
+Srgb saturated + curves + grain 640x427  mean 0.0003  max 1  >1: 0.0000%
+DisplayP3 typical            640x427  mean 0.0001  max 1  >1: 0.0000%
+DisplayP3 saturated + curves + grain 640x427  mean 0.0003  max 1  >1: 0.0000%
+AdobeRgb typical             640x427  mean 0.0001  max 1  >1: 0.0000%
+AdobeRgb saturated + curves + grain 640x427  mean 0.0003  max 1  >1: 0.0000%
+ProPhoto typical             640x427  mean 0.0001  max 1  >1: 0.0000%
+ProPhoto saturated + curves + grain 640x427  mean 0.0002  max 1  >1: 0.0000%
+Rec2020 typical              640x427  mean 0.0001  max 1  >1: 0.0000%
+Rec2020 saturated + curves + grain 640x427  mean 0.0003  max 1  >1: 0.0000%
+ok
+test overlays_match ... point color range overlay    640x427  mean 0.0000  max 1  >1: 0.0000%
+visualize spots t=20           white 4.189%  differing 0.0000%
+visualize spots t=50           white 14.531%  differing 0.0004%
+visualize spots t=90           white 39.784%  differing 0.0011%
+mask 1 overlay color         640x427  mean 0.0001  max 1  >1: 0.0000%
+mask 2 overlay colorOnBw     640x427  mean 0.0000  max 1  >1: 0.0000%
+mask 2 overlay whiteOnBlack  640x427  mean 0.0000  max 0  >1: 0.0000%
+mask 3 overlay imageOnWhite  640x427  mean 0.0000  max 1  >1: 0.0000%
+mask 1 overlay imageOnBlack  640x427  mean 0.0000  max 1  >1: 0.0000%
+ok
+test preview_noise_reduction_matches ... NR preview 640 of 6000       640x480  mean 0.0000  max 1  >1: 0.0000%
+NR preview 320 of 6000       320x240  mean 0.0000  max 1  >1: 0.0000%
+NR preview 128 of 6000       128x96  mean 0.0000  max 1  >1: 0.0000%
+ok
+test red_eye_matches ... red + pet eye                800x400  mean 0.0000  max 0  >1: 0.0000%
+red + pet eye (small)        300x150  mean 0.0000  max 0  >1: 0.0000%
+red eye + spot (cpu stage)   600x300  mean 0.0000  max 0  >1: 0.0000%
+ok
+test rendered_sources_and_other_scenes ... scene 3 display-referred     700x466  mean 0.0003  max 1  >1: 0.0000%
+scene 3 draft                500x333  mean 0.0003  max 1  >1: 0.0000%
+scene 3 full size            800x533  mean 0.0003  max 1  >1: 0.0000%
+scene 5 display-referred     467x700  mean 0.0002  max 1  >1: 0.0000%
+scene 5 draft                333x500  mean 0.0003  max 1  >1: 0.0000%
+scene 5 full size            640x960  mean 0.0002  max 1  >1: 0.0000%
+scene 7 display-referred     700x467  mean 0.0003  max 1  >1: 0.0000%
+scene 7 draft                500x333  mean 0.0003  max 1  >1: 0.0000%
+scene 7 full size            1200x800  mean 0.0003  max 1  >1: 0.0000%
+ok
+test tint_directions_match_cpu_for_raw_and_rendered_sources ... tint direction               64x64  mean 0.0000  max 0  >1: 0.0000%
+tint direction               64x64  mean 0.0000  max 0  >1: 0.0000%
+tint direction               64x64  mean 0.0000  max 0  >1: 0.0000%
+tint direction               64x64  mean 0.0000  max 0  >1: 0.0000%
+tint direction               64x64  mean 0.0000  max 0  >1: 0.0000%
+tint direction               64x64  mean 0.0000  max 0  >1: 0.0000%
+ok
+test windows_match ... window: default              640x480  mean 0.0000  max 1  >1: 0.0000%
+window: typical              640x480  mean 0.0001  max 1  >1: 0.0000%
+window: exposure/contrast/whites 640x480  mean 0.0001  max 1  >1: 0.0000%
+window: vibrance/saturation  640x480  mean 0.0002  max 1  >1: 0.0000%
+window: colour mixer         640x480  mean 0.0001  max 1  >1: 0.0000%
+window: point color          640x480  mean 0.0001  max 1  >1: 0.0000%
+window: b&w mix              640x480  mean 0.0001  max 1  >1: 0.0000%
+window: colour grading       640x480  mean 0.0002  max 1  >1: 0.0000%
+window: tone curves          640x480  mean 0.0000  max 1  >1: 0.0000%
+window: tone curves + refine saturation 640x480  mean 0.0001  max 1  >1: 0.0000%
+window: vignette (highlight) 640x480  mean 0.0000  max 1  >1: 0.0000%
+window: vignette (paint, +)  640x480  mean 0.0000  max 1  >1: 0.0000%
+window: vignette (paint, -)  640x480  mean 0.0000  max 1  >1: 0.0000%
+window: grain                640x480  mean 0.0002  max 1  >1: 0.0000%
+window: dehaze -             640x480  mean 0.0001  max 1  >1: 0.0000%
+window: dehaze +             640x480  mean 0.0000  max 1  >1: 0.0000%
+window: clarity/texture -    640x480  mean 0.0001  max 1  >1: 0.0000%
+window: sharpen masking      640x480  mean 0.0000  max 1  >1: 0.0000%
+window: white balance        640x480  mean 0.0000  max 1  >1: 0.0000%
+window: noise reduction      640x480  mean 0.0001  max 1  >1: 0.0000%
+window: crop + straighten + flip 640x480  mean 0.0001  max 1  >1: 0.0000%
+window: orientation          133x480  mean 0.0000  max 1  >1: 0.0000%
+window: lens + perspective   640x480  mean 0.0001  max 1  >1: 0.0000%
+window: masks (gradients)    640x480  mean 0.0002  max 1  >1: 0.0000%
+window: masks (brush + ranges) 640x480  mean 0.0003  max 1  >1: 0.0000%
+window: masks (cpu shapes, ops, amount) 640x480  mean 0.0001  max 1  >1: 0.0000%
+window: masks (local noise, moiré, defringe) 640x480  mean 0.0000  max 1  >1: 0.0000%
+window: masks (auto mask brush) 640x480  mean 0.0001  max 1  >1: 0.0000%
+window: calibration          640x480  mean 0.0000  max 1  >1: 0.0000%
+window: spots + defringe (cpu stage) 640x480  mean 0.0000  max 1  >1: 0.0000%
+window: vignette at the corner 640x480  mean 0.0000  max 1  >1: 0.0000%
+window: spot reading from outside 640x480  mean 0.0000  max 1  >1: 0.0000%
+window: vignette corner      640x480  mean 0.0000  max 1  >1: 0.0000%
+ok
+test windows_of_a_big_photo_share_one_uploaded_source ... ok
+
+test result: ok. 17 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 11.96s
+
+     Running tests\fallback.rs (target\release\deps\fallback-7bf3b99f183522b6.exe)
+
+running 1 test
+test failed_gpu_renders_fall_back_with_a_reason ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.83s
+
+     Running tests\gpu_probe.rs (target\release\deps\gpu_probe-3261dd641b7afdb9.exe)
+
+running 1 test
+test gpu_probe ... ignored, the capability probe of `cargo xtask ci`
+
+test result: ok. 0 passed; 0 failed; 1 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\memory.rs (target\release\deps\memory-55f13d0b68b4b886.exe)
+
+running 1 test
+test stages_are_counted_and_the_pool_is_bounded_and_trimmed ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.12s
+
+     Running tests\shutdown.rs (target\release\deps\shutdown-1c406a040934aee2.exe)
+
+running 1 test
+test nothing_renders_on_the_gpu_once_the_process_is_ending ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.82s
+
+     Running tests\shutdown_first.rs (target\release\deps\shutdown_first-2be5df668bd97d95.exe)
+
+running 1 test
+test the_device_is_not_created_once_the_process_is_ending ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+   Doc-tests lightcraft_gpu
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling lightcraft-pipeline v0.9.1 (<work>/lightcraft\crates\pipeline)
+gpu_probe: {"pipeline":{"available":true,"adapter":"NVIDIA GeForce RTX 4090 (Dx12)","reason":null,"backends":["dx12"],"compiled":["vulkan","dx12"]}}
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 1.61s

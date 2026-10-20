@@ -1,0 +1,1 @@
+Review evidence for storytold/lightcraft#2332 and #2340: `cargo test --release -p lightcraft-gpu -- --nocapture --test-threads=1` logs (NVIDIA GeForce RTX 4090, Dx12) and before/after crops of one Canon EOS 5D Mark III raw (V2 = process 2, V3 = process 3, rendered with `lightcraft-cli render --settings {"process":N}`). Not part of the code.
